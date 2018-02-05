@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/showcase.iml" filepath="$PROJECT_DIR$/.idea/modules/showcase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/showcase-build.iml" filepath="$PROJECT_DIR$/.idea/modules/showcase-build.iml" />
+    </modules>
+  </component>
+</project>
