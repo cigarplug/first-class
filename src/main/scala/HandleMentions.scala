@@ -12,9 +12,9 @@ class Tweeter  (handle: String, paginationCount: Int){
   val p = new Paging()
   p.setCount(paginationCount)
 
-  val handle_pattern: Regex = """@[A-Za-z0-9]*""".r
+  val handle_pattern: Regex = """@[A-Za-z0-9_]*""".r
 
-  val hashtag_pattern: Regex = """#[A-Za-z0-9]*""".r
+  val hashtag_pattern: Regex = """#[A-Za-z0-9_]*""".r
 
   val respApi =  twitter.getUserTimeline(handle, p)
 
