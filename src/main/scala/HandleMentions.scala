@@ -14,13 +14,13 @@ class Tweeter  (handle: String, paginationCount: Int){
 
   val handle_pattern: Regex = """@[A-Za-z0-9_]*""".r
 
-  val hashtag_pattern: Regex = """#[A-Za-z0-9_]*""".r
+  val hashtag_pattern: Regex = """#[A-Za-z0-9]*""".r
 
   val respApi =  twitter.getUserTimeline(handle, p)
 
-  private def asIs() = respApi
+  def getTweets() = respApi.map(_.getText)
 
-  def getTweets() = asIs().map(_.getText)
+  def asIs() = respApi
 
   def hashtagUsageFreq = getTweets().
     flatMap(s => hashtag_pattern.findAllMatchIn(s)).
@@ -30,12 +30,13 @@ class Tweeter  (handle: String, paginationCount: Int){
 
   def handleMentionsFromTweetText = getTweets().
     flatMap(s => handle_pattern.findAllMatchIn(s)).
-    map(_.toString()).
+    map(_.toString()).map(_.replace("@", "").toLowerCase()).
     groupBy(identity).
     mapValues(_.size)
 
   def handleMentionsFromLibraryMethod = respApi.
     flatMap(_.getUserMentionEntities.map(_.getScreenName)).
+    map(_.toLowerCase()).
     groupBy(s => s).
     mapValues(_.size)
 
